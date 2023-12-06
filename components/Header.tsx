@@ -5,6 +5,7 @@ import { RxCaretLeft, RxCaretRight } from "react-icons/rx";
 import { useRouter } from "next/navigation";
 import { FaUserAlt } from "react-icons/fa";
 import { useSupabaseClient } from "@supabase/auth-helpers-react";
+import { toast } from "react-hot-toast";
 import { HiHome } from "react-icons/hi";
 import { BiSearch } from "react-icons/bi";
 
@@ -12,7 +13,6 @@ import useAuthModal from "@/hooks/useAuthModal";
 import { useUser } from "@/hooks/useUser";
 
 import Button from "./Button";
-import toast from "react-hot-toast";
 
 interface HeaderProps {
   children: React.ReactNode;
@@ -29,10 +29,9 @@ const Header: React.FC<HeaderProps> = ({ children, className }) => {
   const handleLogout = async () => {
     const { error } = await supabaseClient.auth.signOut();
     router.refresh();
+
     if (error) {
       toast.error(error.message);
-    } else {
-      toast.success("Logged Out!");
     }
   };
 
@@ -122,8 +121,8 @@ const Header: React.FC<HeaderProps> = ({ children, className }) => {
                 Logout
               </Button>
               <Button
-                className="bg-white"
                 onClick={() => router.push("/account")}
+                className="bg-white"
               >
                 <FaUserAlt />
               </Button>
@@ -134,10 +133,10 @@ const Header: React.FC<HeaderProps> = ({ children, className }) => {
                 <Button
                   onClick={authModal.onOpen}
                   className="
-                  bg-transparent 
-                  text-neutral-300 
-                      font-medium
-                    "
+                    bg-transparent 
+                    text-neutral-300 
+                    font-medium
+                  "
                 >
                   Sign up
                 </Button>
