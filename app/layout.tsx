@@ -8,6 +8,7 @@ import UserProvider from "@/providers/UserProvider";
 import ToasterProvider from "@/providers/ToasterProvider";
 import getSongsByUserId from "@/actions/getSongsByUserId";
 import React from "react";
+import Player from "@/components/Player";
 const font = Figtree({ subsets: ["latin"] });
 export const metadata: Metadata = {
   title: "Spotify Clone",
@@ -30,6 +31,7 @@ export default async function RootLayout({
           <UserProvider>
             <ModalProvider />
             <Sidebar songs={userSongs}>{children}</Sidebar>
+            <Player />
           </UserProvider>
         </SupabaseProvider>
       </body>
