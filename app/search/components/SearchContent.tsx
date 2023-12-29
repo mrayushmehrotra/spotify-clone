@@ -9,6 +9,7 @@ interface SerachContentProps {
 }
 
 const SearchContent: React.FC<SerachContentProps> = ({ songs }) => {
+  const onPlay = useOnPlay(songs);
   if (songs.length === 0) {
     return (
       <div
@@ -20,7 +21,6 @@ const SearchContent: React.FC<SerachContentProps> = ({ songs }) => {
       </div>
     );
   }
-  const onPlay = useOnPlay(songs);
   return (
     <div className="flex flex-col gap-y-2 w-full px-6">
       {songs.map((song) => (
