@@ -26,7 +26,7 @@ const formatPrice = (price: Price) => {
 const SubscripeModal: React.FC<SubscribeModalProps> = ({ products }) => {
   const subscribeModal = useSubscribeModal();
   let content = <div className="text-center">No Product Available</div>;
-  const { user, isLoading, subscription } = useUser();
+  const { user, isLoading } = useUser();
   const [priceIdLoading, setpriceIdLoading] = useState<string>();
 
   const onChange = (open: boolean) => {
@@ -40,10 +40,6 @@ const SubscripeModal: React.FC<SubscribeModalProps> = ({ products }) => {
     if (!user) {
       setpriceIdLoading(undefined);
       return toast.error("Must be logged in");
-    }
-    if (subscription) {
-      setpriceIdLoading(undefined);
-      return toast("Already subscribed");
     }
 
     try {
@@ -80,9 +76,6 @@ const SubscripeModal: React.FC<SubscribeModalProps> = ({ products }) => {
         })}
       </div>
     );
-  }
-  if (subscription) {
-    content = <div className="text-center">Already Subscribe</div>;
   }
 
   return (
