@@ -9,7 +9,7 @@ const NotFound = () => {
   return (
     <>
       <Box className="flex flex-col items-center justify-center w-full h-full">
-        <p>Go where songs let you go</p>
+        <p>Go where songs let you go...</p>
         <div className="m-5"></div>
         <Button onClick={() => router.push("/")}>
           <h1>Home</h1>
